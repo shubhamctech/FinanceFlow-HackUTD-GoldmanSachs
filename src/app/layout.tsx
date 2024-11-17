@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import Link from "next/link";
 import "./globals.css";
+import NavBar from "@/components/NavBar";
 
 interface RootLayoutProps {
 	children: ReactNode;
@@ -15,51 +16,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
 	return (
 		<html lang="en">
 			<body className="flex flex-col min-h-screen bg-gray-50 text-gray-800">
-				<header className="bg-white shadow-sm">
-					<nav className="container mx-auto px-4 py-3 flex justify-between items-center">
-						<Link href="/" className="text-xl font-bold text-blue-600">
-							FinanceApp
-						</Link>
-						<ul className="flex space-x-4">
-							<li>
-								<Link href="/dashboard" className="hover:text-blue-600">
-									Dashboard
-								</Link>
-							</li>
-							<li>
-								<Link href="/banking" className="hover:text-blue-600">
-									Banking
-								</Link>
-							</li>
-							<li>
-								<Link href="/payments" className="hover:text-blue-600">
-									Payments
-								</Link>
-							</li>
-							<li>
-								<Link href="/investments" className="hover:text-blue-600">
-									Investments
-								</Link>
-							</li>
-							<li>
-								<Link href="/fraud-detection" className="hover:text-blue-600">
-									Fraud Detection
-								</Link>
-							</li>
-							<li>
-								<Link href="/about" className="hover:text-blue-600">
-									About
-								</Link>
-							</li>
-						</ul>
-						<Link
-							href="/auth"
-							className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-						>
-							Login / Sign Up
-						</Link>
-					</nav>
-				</header>
+        <div className="flex flex-col items-center">
+          <NavBar />
+        {/* ... (rest of the Home component code) */}
+        </div>
 
 				<main className="flex-grow container mx-auto px-4 py-8">
 					{children}
