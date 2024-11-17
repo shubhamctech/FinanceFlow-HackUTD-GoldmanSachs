@@ -29,7 +29,7 @@ interface Transaction{
   category: string;
 }
 
-const transactions: Transaction[] = [
+const dummy_transactions: Transaction[] = [
     {
       "id": 1,
       "date": "2023-01-05",
@@ -737,12 +737,12 @@ function CustomPieChart() {
   const [timeFrame, setTimeFrame] = useState('monthly');
 
   // Convert transaction dates to Date objects
-  const transactionsWithDate = transactions.map((transaction) => ({
+  const transactionsWithDate = dummy_transactions.map((transaction) => ({
     ...transaction,
     dateObj: new Date(transaction.date),
   }));
 
-  const spendingByCategory = transactions.reduce((acc, transaction) => {
+  const spendingByCategory = dummy_transactions.reduce((acc, transaction) => {
     if (transaction.amount < 0) { // Only expenses
       const category = transaction.category;
       if (!acc[category]) {
@@ -888,7 +888,7 @@ const getMonthName = (date: string) => {
 };
 
 // Step 2: Aggregate income and spending by month
-const barData = transactions.reduce((acc, transaction) => {
+const barData = dummy_transactions.reduce((acc, transaction) => {
   const month = getMonthName(transaction.date);
 
   // Find the existing month in the accumulator
@@ -927,7 +927,9 @@ export function CustomBarChart() {
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={barConfig}>
+        <ChartContainer config={barConfig}
+        className = "max-h-[25vh] overflow-y-auto w-full" //allow scrolling, max height
+        >
           <BarChart accessibilityLayer data={barData}>
             <CartesianGrid vertical={false} />
             <XAxis
@@ -964,7 +966,7 @@ export function CustomBarChart() {
 };
 
 // Aggregate income and spending by month
-const lineData = transactions.reduce((acc, transaction) => {
+const lineData = dummy_transactions.reduce((acc, transaction) => {
   const month = getMonthName(transaction.date);
 
   // Find existing month in the accumulator
@@ -1003,7 +1005,9 @@ export function CustomLineChart() {
         <CardDescription>January - June 2023</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={lineConfig}>
+        <ChartContainer config={lineConfig}
+        className = "max-h-[25vh] overflow-y-auto w-full" //allow scrolling, max height
+        >
           <LineChart
             accessibilityLayer
             data={lineData}
@@ -1055,13 +1059,159 @@ export function CustomLineChart() {
 }
 
 
-export default function Analytics(){
+// export default function Analytics(){
+//   return (
+//     <div>
+//       <h1>Analytics Dashboard</h1>
+//       <CustomPieChart/>
+//       <CustomBarChart/>
+//       <CustomLineChart/>
+//     </div>
+//   )
+// };
+
+
+export default function Dashboard(){
+  const [credit, setCredit] = useState(1350);
+  const [transactions, setTransactions] = useState(dummy_transactions);
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [popupType, setPopupType] = useState<"deposit" | "withdraw">("deposit");
+  const [amount, setAmount] = useState("");
+
+  const handleTransaction = () => {
+    const amountNum = parseFloat(amount);
+    if(isNaN(amountNum) || amountNum <= 0){
+      alert("Please enter a valid amount.");
+      return;
+    }
+    if(amountNum > credit)
+    { 
+      alert("boy you broke.")
+      return;
+    }
+
+    const newBalance = popupType === "deposit" ? credit + amountNum : credit - amountNum;
+    setCredit(newBalance);
+
+    const newTransaction = {
+      id: transactions.length + 1,
+      date: new Date().toISOString().slice(0,10),
+      description: popupType === "deposit" ? "Deposit" : "Withdraw",
+      amount: popupType === "deposit" ? amountNum : -amountNum,
+      category: "transfers",
+    }
+    //add this to the database
+    
+    setTransactions((prevTransactions) => [
+      ...prevTransactions.slice(-prevTransactions.length-1), 
+      newTransaction
+    ]);
+    setPopupOpen(false);
+    setAmount(""); //clear input
+  }
+
   return (
-    <div>
-      <h1>Analytics Dashboard</h1>
-      <CustomPieChart/>
-      <CustomBarChart/>
-      <CustomLineChart/>
+    <div className="flex flex-row p-4">
+      {/* Left Side Content */}
+      <div className="flex flex-col w-1/3 gap-4">
+        {/* Balance and Credit */}
+        <div className="flex justify-between items-center p-4 bg-gray-100 rounded-lg shadow-md">
+          <div>
+            <h2 className="text-lg font-bold">Balance</h2>
+            <p className="text-2xl">$5,250</p>
+          </div>
+          <div>
+            <h2 className="text-lg font-bold">Credit</h2>
+            <p className="text-2xl">${credit.toLocaleString()} / $3,600</p>
+          </div>
+        </div>
+
+        {/* Most Recent Transactions */}
+        <div className="flex flex-col p-4 bg-gray-100 rounded-lg shadow-md">
+          <h2 className="text-lg font-bold mb-2">Most Recent Transactions</h2>
+          <ul className="flex flex-col gap-2">
+            {transactions
+            .slice(-5)
+            .reverse()
+            .map((transaction) => (
+              <li key={transaction.id} className="flex justify-between">
+                <span>{transaction.description}</span>
+                <span
+                  className={`font-medium ${
+                    transaction.amount > 0 ? "text-green-600" : "text-red-600"
+                  }`}
+                >
+                  {transaction.amount > 0
+                    ? transaction.amount.toLocaleString()
+                    : transaction.amount.toLocaleString()}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Buttons */}
+        <div className="flex justify-between">
+          <button className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600" 
+          onClick={() => {
+            setPopupType("deposit");
+            setPopupOpen(true);
+          }}
+          >
+            Deposit
+          </button>
+          <button className="px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600"
+          onClick={() => {
+            setPopupType("withdraw");
+            setPopupOpen(true);
+          }}
+          >
+            Withdraw
+          </button>
+        </div>
+        <CustomPieChart />
+      </div>
+
+      {/* Right Side Charts */}
+      <div className="flex-1 flex flex-col gap-4">
+        <CustomBarChart />
+        <CustomLineChart />
+      </div>
+      {/* Pop up Form */}
+      {popupOpen && (
+      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+        <div className="bg-white p-6 rounded-lg shadow-lg">
+          <h2 className="text-lg font-bold mb-4">
+            {popupType === "deposit" ? "Deposit Amount" : "Withdraw Amount"}
+          </h2>
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            placeholder="Enter amount"
+            className="w-full p-2 border border-gray-300 rounded mb-4"
+          />
+          <div className="flex justify-between">
+            <button
+              onClick={handleTransaction}
+              className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+            >
+              Submit
+            </button>
+            <button
+              onClick={() => {
+                setPopupOpen(false);
+                setAmount(""); //clear previous input
+              }}
+              className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+      )}
     </div>
-  )
-};
+
+  );
+}
