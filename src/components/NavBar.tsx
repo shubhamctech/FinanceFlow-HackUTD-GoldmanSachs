@@ -47,7 +47,7 @@ export default function NavBar() {
             <div className="flex-shrink-0 ml-2">
               <Link href="/">
                 <span className="text-xl font-bold text-blue-600">
-                  FinanceApp
+                  FinanceFlow
                 </span>
               </Link>
             </div>

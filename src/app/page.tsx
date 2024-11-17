@@ -4,9 +4,8 @@ import Image from "next/image";
 export default function Home() {
 	return (
 		<div className="flex flex-col items-center">
-			{/* Hero Section */}
 			<section className="text-center py-20 bg-blue-50 w-full">
-				<h1 className="text-4xl font-bold mb-4">Welcome to FinanceApp</h1>
+				<h1 className="text-4xl font-bold mb-4">Welcome to FinanceFlow</h1>
 				<p className="text-xl mb-8">
 					Your trusted partner for banking, payments, and investments
 				</p>
@@ -25,22 +24,21 @@ export default function Home() {
 					<FeatureCard
 						title="Secure Banking"
 						description="Manage your accounts, transfer funds, and track your spending with our secure online banking platform."
-						icon="/icons/banking.svg"
+						icon="/images/SecureBanking.png"
 					/>
 					<FeatureCard
 						title="Easy Payments"
-						description="Send and receive payments quickly and securely, whether you're paying bills or splitting costs with friends."
-						icon="/icons/payments.svg"
+						description="Send and receive payments quickly and securely and manage transactions."
+						icon="/images/EasyPayement.png"
 					/>
 					<FeatureCard
-						title="Smart Investments"
-						description="Grow your wealth with our range of investment options, from stocks and bonds to mutual funds and ETFs."
-						icon="/icons/investments.svg"
+						title="Smart Investments Suggestions"
+						description="Grow your wealth with our range of investment opportunities suggestions, based on our AI model prediction."
+						icon="/images/SmartInvestment.png"
 					/>
 				</div>
 			</section>
 
-			{/* CTA Section */}
 			<section className="bg-blue-600 text-white py-16 w-full">
 				<div className="text-center">
 					<h2 className="text-3xl font-bold mb-4">
@@ -74,7 +72,7 @@ function FeatureCard({
 	return (
 		<div className="bg-white p-6 rounded-lg shadow-md text-center">
 			<div className="w-16 h-16 mx-auto mb-4">
-				<Image src={icon} alt={title} width={64} height={64} />
+				<Image src={icon} alt={title} width={64} height={64} className="rounded-xl"/>
 			</div>
 			<h3 className="text-xl font-semibold mb-2">{title}</h3>
 			<p className="text-gray-600">{description}</p>
