@@ -4,6 +4,8 @@ import "./globals.css";
 import NavBar from "@/components/NavBar";
 import SessionWrapper from "@/components/SessionWrapper";
 import { Session } from "inspector/promises";
+import { useSession, signIn, signOut } from "next-auth/react";
+
 
 
 interface RootLayoutProps {
@@ -20,7 +22,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
 		<html lang="en">
 			<body className="flex flex-col min-h-screen bg-gray-50 text-gray-800">
         <div className="flex flex-col items-center">
+		<SessionWrapper>
           <NavBar />
+		</SessionWrapper>
         {/* ... (rest of the Home component code) */}
         </div>
 

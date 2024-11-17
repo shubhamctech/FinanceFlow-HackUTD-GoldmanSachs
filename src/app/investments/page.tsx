@@ -133,13 +133,169 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 const fetchStockData = async () => {
   const apiKey = 'YOUR_ALPHA_VANTAGE_API_KEY'; // Replace with your API key
   const symbol = 'GS'; // Goldman Sachs stock symbol
-  const interval = '1min'; // 1-minute intervals
+  const interval = '60min'; // 1-minute intervals
   const url = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=${interval}&apikey=${apiKey}`;
 
   const response = await fetch(url);
-  const data = await response.json();
-  return data['Time Series (1min)'];
-};
+  //const data = await response.json();
+
+  const data = 
+  {
+    "Meta Data": {
+      "1. Information": "Intraday (1min) open, high, low, close prices and volume",
+      "2. Symbol": "GS",
+      "3. Last Refreshed": "2024-11-17 16:00:00",
+      "4. Interval": "1min",
+      "5. Output Size": "Compact",
+      "6. Time Zone": "US/Eastern"
+    },
+    "Time Series (1min)": {
+      "2024-11-17 16:00:00": {
+        "1. open": "592.10",
+        "2. high": "592.90",
+        "3. low": "591.20",
+        "4. close": "591.50",
+        "5. volume": "3200"
+      },
+      "2024-11-17 15:59:00": {
+        "1. open": "593.80",
+        "2. high": "594.20",
+        "3. low": "591.60",
+        "4. close": "592.00",
+        "5. volume": "4100"
+      },
+      "2024-11-17 15:58:00": {
+        "1. open": "590.00",
+        "2. high": "592.00",
+        "3. low": "588.90",
+        "4. close": "591.90",
+        "5. volume": "4900"
+      },
+      "2024-11-17 15:57:00": {
+        "1. open": "593.00",
+        "2. high": "593.80",
+        "3. low": "589.50",
+        "4. close": "590.20",
+        "5. volume": "5100"
+      },
+      "2024-11-17 15:56:00": {
+        "1. open": "588.50",
+        "2. high": "591.10",
+        "3. low": "587.20",
+        "4. close": "590.50",
+        "5. volume": "6000"
+      },
+      "2024-11-17 15:55:00": {
+        "1. open": "591.70",
+        "2. high": "592.40",
+        "3. low": "588.80",
+        "4. close": "589.30",
+        "5. volume": "5800"
+      },
+      "2024-11-17 15:54:00": {
+        "1. open": "588.20",
+        "2. high": "590.90",
+        "3. low": "586.00",
+        "4. close": "587.50",
+        "5. volume": "6200"
+      },
+      "2024-11-17 15:53:00": {
+        "1. open": "590.50",
+        "2. high": "591.30",
+        "3. low": "587.70",
+        "4. close": "590.90",
+        "5. volume": "5500"
+      },
+      "2024-11-17 15:52:00": {
+        "1. open": "593.20",
+        "2. high": "594.50",
+        "3. low": "590.80",
+        "4. close": "592.00",
+        "5. volume": "5100"
+      },
+      "2024-11-17 15:51:00": {
+        "1. open": "588.10",
+        "2. high": "590.00",
+        "3. low": "585.60",
+        "4. close": "589.50",
+        "5. volume": "6300"
+      },
+      "2024-11-17 15:50:00": {
+        "1. open": "591.00",
+        "2. high": "591.80",
+        "3. low": "588.90",
+        "4. close": "589.80",
+        "5. volume": "4800"
+      },
+      "2024-11-17 15:49:00": {
+        "1. open": "587.00",
+        "2. high": "589.00",
+        "3. low": "586.10",
+        "4. close": "588.20",
+        "5. volume": "6500"
+      },
+      "2024-11-17 15:48:00": {
+        "1. open": "589.50",
+        "2. high": "590.30",
+        "3. low": "587.70",
+        "4. close": "588.60",
+        "5. volume": "5700"
+      },
+      "2024-11-17 15:47:00": {
+        "1. open": "591.30",
+        "2. high": "592.70",
+        "3. low": "589.40",
+        "4. close": "591.80",
+        "5. volume": "4900"
+      },
+      "2024-11-17 15:46:00": {
+        "1. open": "593.50",
+        "2. high": "594.80",
+        "3. low": "591.70",
+        "4. close": "592.60",
+        "5. volume": "5200"
+      },
+      "2024-11-17 15:45:00": {
+        "1. open": "588.90",
+        "2. high": "591.00",
+        "3. low": "586.80",
+        "4. close": "590.00",
+        "5. volume": "6200"
+      },
+      "2024-11-17 15:44:00": {
+        "1. open": "592.00",
+        "2. high": "593.50",
+        "3. low": "591.30",
+        "4. close": "592.70",
+        "5. volume": "4700"
+      },
+      "2024-11-17 15:43:00": {
+        "1. open": "587.70",
+        "2. high": "588.80",
+        "3. low": "586.50",
+        "4. close": "588.40",
+        "5. volume": "5900"
+      },
+      "2024-11-17 15:42:00": {
+        "1. open": "589.20",
+        "2. high": "590.40",
+        "3. low": "588.10",
+        "4. close": "589.80",
+        "5. volume": "5100"
+      },
+      "2024-11-17 15:41:00": {
+        "1. open": "588.40",
+        "2. high": "589.90",
+        "3. low": "586.20",
+        "4. close": "588.20",
+        "5. volume": "6200"
+      }
+    }
+  }
+  
+  
+    return data['Time Series (1min)'];
+  };
 
 // Hardcoded financial news data
 const financialNews = [

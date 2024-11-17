@@ -2,9 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useSession, signOut } from "next-auth/react";
+
+
 
 export default function NavBar() {
 	const [isOpen, setIsOpen] = useState(false);
+	const { data: session, status } = useSession();
 
 	return (
 		<nav className="bg-white shadow-md w-full">
@@ -88,12 +92,30 @@ export default function NavBar() {
 							</Link>
 						</li>
 					</ul>
-					<Link
+					 <Link
 						href="/auth"
 						className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 hover:underline"
 					>
 						Login / Sign Up
 					</Link>
+					{/* Right part: Conditional Login/Logout */}
+					{status === "loading" ? (
+						<div>Loading...</div>
+					) : session ? (
+						<button
+						onClick={() => signOut()}
+						className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+						>
+						Logout
+						</button>
+					) : (
+						<Link
+						href="/auth"
+						className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 hover:underline"
+						>
+						Login / Sign Up
+						</Link>
+					)}
 				</div>
 			</div>
 
