@@ -18,10 +18,10 @@ export const metadata = {
 export default function RootLayout({ children }: RootLayoutProps) {
 	return (
 		<html lang="en">
+			<SessionWrapper>
 			<body className="flex flex-col min-h-screen bg-gray-50 text-gray-800">
         <div className="flex flex-col items-center">
           <NavBar />
-        {/* ... (rest of the Home component code) */}
         </div>
 
 				<main className="flex-grow container mx-auto px-4 py-8">
@@ -53,6 +53,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 					</div>
 				</footer>
 			</body>
+			</SessionWrapper>
 		</html>
 	);
 }

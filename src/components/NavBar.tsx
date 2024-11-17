@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 export default function NavBar() {
 	const [isOpen, setIsOpen] = useState(false);
+	const { data: session } = useSession();
 
 	return (
 		<nav className="bg-white shadow-md w-full">
@@ -47,7 +49,7 @@ export default function NavBar() {
 						<div className="flex-shrink-0 ml-2">
 							<Link href="/">
 								<span className="text-xl font-bold text-blue-600">
-									FinanceApp
+									FinanceFlow
 								</span>
 							</Link>
 						</div>
@@ -93,12 +95,21 @@ export default function NavBar() {
 							</Link>
 						</li>
 					</ul>
-					<Link
+					{session ? (
+						<button
+						onClick={() => signOut()}
+						className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+						>
+						Logout
+						</button>
+					) : (
+						<Link
 						href="/auth/login"
 						className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-					>
+						>
 						Login / Sign Up
-					</Link>
+						</Link>
+					)}
 				</div>
 			</div>
 
