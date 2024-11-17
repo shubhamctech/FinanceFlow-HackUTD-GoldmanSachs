@@ -1,9 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
+// app/page.tsx
+import { DataManager } from "../components/DataManager";
 
 export default function Home() {
 	return (
 		<div className="flex flex-col items-center">
+			{/* Hero Section */}
 			<section className="text-center py-20 bg-blue-50 w-full">
 				<h1 className="text-4xl font-bold mb-4">Welcome to FinanceFlow</h1>
 				<p className="text-xl mb-8">
