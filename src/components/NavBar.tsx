@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 export default function NavBar() {
 	const [isOpen, setIsOpen] = useState(false);
+	const { data: session } = useSession();
 
 	return (
 		<nav className="bg-white shadow-md w-full">
@@ -47,48 +49,69 @@ export default function NavBar() {
 						<div className="flex-shrink-0 ml-2">
 							<Link href="/">
 								<span className="text-xl font-bold text-blue-600">
-									FinanceApp
+									FinanceFlow
 								</span>
 							</Link>
 						</div>
 					</div>
 
-          {/* Center part: Nav links */}
-        <ul className="hidden md:flex md:space-x-8">
-            <li>
-            <Link href="/dashboard" className="text-gray-700 hover:text-blue-600">
-                Dashboard
-            </Link>
-            </li>
-            <li>
-            <Link href="/banking" className="text-gray-700 hover:text-blue-600">
-                Banking
-            </Link>
-            </li>
-            <li>
-            <Link href="/investments" className="text-gray-700 hover:text-blue-600">
-                Investments
-            </Link>
-            </li>
-            <li>
-            <Link href="/articles" className="text-gray-700 hover:text-blue-600">
-                Articles
-            </Link>
-            </li>
-            <li>
-            <Link href="/chat" className="text-gray-700 hover:text-blue-600">
-                AI Assistant
-            </Link>
-            </li>
-        </ul>
-        <Link
-            href="/auth/login"
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-            Login / Sign Up
-        </Link>
-        </div>
-      </div>
+					{/* Center part: Nav links */}
+					<ul className="hidden md:flex md:space-x-8">
+						<li>
+							<Link
+								href="/dashboard"
+								className="text-gray-700 hover:text-blue-600"
+							>
+								Dashboard
+							</Link>
+						</li>
+						<li>
+							<Link
+								href="/banking"
+								className="text-gray-700 hover:text-blue-600"
+							>
+								Banking
+							</Link>
+						</li>
+						<li>
+							<Link
+								href="/investments"
+								className="text-gray-700 hover:text-blue-600"
+							>
+								Investments
+							</Link>
+						</li>
+						<li>
+							<Link
+								href="/articles"
+								className="text-gray-700 hover:text-blue-600"
+							>
+								Articles
+							</Link>
+						</li>
+						<li>
+							<Link href="/chat" className="text-gray-700 hover:text-blue-600">
+								AI Assistant
+							</Link>
+						</li>
+					</ul>
+					{session ? (
+						<button
+						onClick={() => signOut()}
+						className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+						>
+						Logout
+						</button>
+					) : (
+						<Link
+						href="/auth/login"
+						className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+						>
+						Login / Sign Up
+						</Link>
+					)}
+				</div>
+			</div>
 
 			{/* Mobile menu */}
 			{isOpen && (
