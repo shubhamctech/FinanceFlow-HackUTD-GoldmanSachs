@@ -19,10 +19,10 @@ import { Separator } from '@/components/ui/separator';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const fetchStockData = async () => {
-  const apiKey = 'YOUR_ALPHA_VANTAGE_API_KEY'; // Replace with your API key
+  // const apiKey = process.env.ALPHA_VANTAGE_API_KEY; // Replace with your API key
   const symbol = 'GS'; // Goldman Sachs stock symbol
   const interval = '1min'; // 1-minute intervals
-  const url = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=${interval}&apikey=${apiKey}`;
+  const url = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=${interval}`;//&apikey=${apiKey}`;
 
   const response = await fetch(url);
   const data = await response.json();
@@ -95,36 +95,61 @@ const StockGraph: React.FC = () => {
   }, []);
 
   return (
-    <div className="container mx-auto py-8 flex">
-      {/* Left: Stock graph */}
-      <div className="w-2/3">
-        <div className="relative">
+    <div className="flex flex-col ">
+    {/* Top Section: Stock Graph and Right Side Containers */}
+    <div className="flex w-screen h-[50vh]">
+      {/* Left: Stock Graph */}
+      <div className="flex-1 h-full">
+        <div className="relative h-full">
           <Line data={chartData} options={{ responsive: true }} />
         </div>
       </div>
 
-      <Separator orientation="vertical" className="mx-4" />
-
-      {/* Right: Financial news */}
-      <div className="w-1/3 space-y-4">
-        {financialNews.map((news, index) => (
-          <Card key={index} className="shadow-lg">
-            <CardHeader>
-              <CardTitle className="text-sm font-bold">{news.title}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-xs text-gray-600">{news.description}</p>
-              <p className="text-xs text-gray-400 mt-1">Published by: {news.publisher}</p>
-              <p className="text-xs text-gray-400">Date: {new Date(news.published_utc).toLocaleString()}</p>
-              <a href={news.article_url} target="_blank" className="text-blue-600 text-xs mt-2 inline-block">
-                Read more
-              </a>
-            </CardContent>
-          </Card>
-        ))}
+      {/* Right Side: Trending, Gaining, and Losing Stocks */}
+      <div className="flex-1 h-full flex flex-col space-y-4 items-end">
+        {/* Trending Stocks */}
+        <Card className="shadow-lg h-full w-full">
+          <CardHeader>
+            <CardTitle className="text-sm font-bold">Trending Stocks</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {/* Replace with your Trending Stocks component or content */}
+            <p>Trending stocks content goes here.</p>
+          </CardContent>
+        </Card>
+      </div>
+    </div>  
+      {/* Bottom Section: Financial News */}
+      <div className="w-screen mt-8">
+        <div className="space-y-4">
+          {financialNews.map((news, index) => (
+            <Card key={index} className="shadow-lg w-full">
+              <CardHeader>
+                <CardTitle className="text-sm font-bold">{news.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-xs text-gray-600">{news.description}</p>
+                <p className="text-xs text-gray-400 mt-1">
+                  Published by: {news.publisher}
+                </p>
+                <p className="text-xs text-gray-400">
+                  Date: {new Date(news.published_utc).toLocaleString()}
+                </p>
+                <a
+                  href={news.article_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 text-xs mt-2 inline-block"
+                >
+                  Read more
+                </a>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
     </div>
-  );
+  );  
 };
 
 export default StockGraph;
