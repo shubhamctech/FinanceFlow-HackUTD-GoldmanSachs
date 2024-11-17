@@ -7,10 +7,10 @@ export default function Home() {
 	// `session` will match the returned value of `callbacks.session()` from `NextAuth()`
 	return (
 		<div className="flex flex-col items-center">
-			<main>
+			{/* <main>
 				<h1>Pinata Data Management</h1>
 				<DataManager />
-			</main>
+			</main> */}
 
 			<section className="text-center py-20 bg-blue-50 w-full">
 				<h1 className="text-4xl font-bold mb-4">Welcome to FinanceFlow</h1>
