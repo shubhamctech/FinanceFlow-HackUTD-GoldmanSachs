@@ -53,49 +53,42 @@ export default function NavBar() {
 						</div>
 					</div>
 
-					{/* Center part: Nav links */}
-					<ul className="hidden md:flex md:space-x-8">
-						<li>
-							<Link
-								href="/dashboard"
-								className="text-gray-700 hover:text-blue-600 hover:font-bold hover:underline"
-							>
-								Dashboard
-							</Link>
-						</li>
-						<li>
-							<Link
-								href="/banking"
-								className="text-gray-700 hover:text-blue-600 hover:font-bold hover:underline"
-							>
-								Banking
-							</Link>
-						</li>
-						<li>
-							<Link
-								href="/investments"
-								className="text-gray-700 hover:text-blue-600 hover:font-bold hover:underline"
-							>
-								Investment
-							</Link>
-						</li>
-						<li>
-							<Link
-								href="/articles"
-								className="text-gray-700 hover:text-blue-600 hover:font-bold hover:underline"
-							>
-								Articles
-							</Link>
-						</li>
-					</ul>
-					<Link
-						href="/auth"
-						className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 hover:underline"
-					>
-						Login / Sign Up
-					</Link>
-				</div>
-			</div>
+          {/* Center part: Nav links */}
+        <ul className="hidden md:flex md:space-x-8">
+            <li>
+            <Link href="/dashboard" className="text-gray-700 hover:text-blue-600">
+                Dashboard
+            </Link>
+            </li>
+            <li>
+            <Link href="/banking" className="text-gray-700 hover:text-blue-600">
+                Banking
+            </Link>
+            </li>
+            <li>
+            <Link href="/investments" className="text-gray-700 hover:text-blue-600">
+                Investments
+            </Link>
+            </li>
+            <li>
+            <Link href="/about" className="text-gray-700 hover:text-blue-600">
+                About Us
+            </Link>
+            </li>
+            <li>
+            <Link href="/contact" className="text-gray-700 hover:text-blue-600">
+                Contact
+            </Link>
+            </li>
+        </ul>
+        <Link
+            href="/auth/login"
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+            Login / Sign Up
+        </Link>
+        </div>
+      </div>
 
 			{/* Mobile menu */}
 			{isOpen && (
