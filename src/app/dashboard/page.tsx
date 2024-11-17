@@ -805,8 +805,8 @@ const totalSpending = React.useMemo(() => {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>This Month's Spending</CardTitle>
-        <CardDescription>January 2024</CardDescription>
+        <CardTitle>Total Expenditure</CardTitle>
+        <CardDescription>Year to Date</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
@@ -859,10 +859,7 @@ const totalSpending = React.useMemo(() => {
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+          Expenses up by 5.2% this month <TrendingUp className="h-4 w-4" />
         </div>
       </CardFooter>
     </Card>
@@ -872,9 +869,6 @@ const totalSpending = React.useMemo(() => {
 const getMonthName = (date: string) => {
   const monthIndex = new Date(date).getMonth(); // 0-indexed month
   return [
-    "January",
-    "February",
-    "March",
     "April",
     "May",
     "June",
@@ -882,12 +876,10 @@ const getMonthName = (date: string) => {
     "August",
     "September",
     "October",
-    "November",
-    "December",
+    "November"
   ][monthIndex];
 };
 
-// Step 2: Aggregate income and spending by month
 const barData = dummy_transactions.reduce((acc, transaction) => {
   const month = getMonthName(transaction.date);
 
@@ -924,7 +916,7 @@ export function CustomBarChart() {
     <Card>
       <CardHeader>
         <CardTitle>Income and Spending Month by Month</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardDescription>Apr - Nov 2024</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={barConfig}
@@ -954,12 +946,6 @@ export function CustomBarChart() {
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
-        </div>
       </CardFooter>
     </Card>
   )
@@ -1042,18 +1028,6 @@ export function CustomLineChart() {
           </LineChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter>
-        <div className="flex w-full items-start gap-2 text-sm">
-          <div className="grid gap-2">
-            <div className="flex items-center gap-2 font-medium leading-none">
-              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-            </div>
-            <div className="flex items-center gap-2 leading-none text-muted-foreground">
-              Showing total income and spending for the last 6 months
-            </div>
-          </div>
-        </div>
-      </CardFooter>
     </Card>
   );
 }
@@ -1148,26 +1122,6 @@ export default function Dashboard(){
               </li>
             ))}
           </ul>
-        </div>
-
-        {/* Buttons */}
-        <div className="flex justify-between">
-          <button className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600" 
-          onClick={() => {
-            setPopupType("deposit");
-            setPopupOpen(true);
-          }}
-          >
-            Deposit
-          </button>
-          <button className="px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600"
-          onClick={() => {
-            setPopupType("withdraw");
-            setPopupOpen(true);
-          }}
-          >
-            Withdraw
-          </button>
         </div>
         <CustomPieChart />
       </div>

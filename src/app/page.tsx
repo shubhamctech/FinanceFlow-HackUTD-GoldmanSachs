@@ -12,7 +12,6 @@ export default function Home() {
 				<DataManager />
 			</main>
 
-			{/* Hero Section */}
 			<section className="text-center py-20 bg-blue-50 w-full">
 				<h1 className="text-4xl font-bold mb-4">Welcome to FinanceFlow</h1>
 				<p className="text-xl mb-8">
@@ -26,7 +25,6 @@ export default function Home() {
 				</Link>
 			</section>
 
-			{/* Features Section */}
 			<section className="py-16 w-full">
 				<h2 className="text-3xl font-bold text-center mb-12">Our Services</h2>
 				<div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto px-4">
