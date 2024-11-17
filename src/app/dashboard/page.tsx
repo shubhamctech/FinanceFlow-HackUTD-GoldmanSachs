@@ -927,7 +927,9 @@ export function CustomBarChart() {
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={barConfig}>
+        <ChartContainer config={barConfig}
+        className = "max-h-[25vh] overflow-y-auto w-full" //allow scrolling, max height
+        >
           <BarChart accessibilityLayer data={barData}>
             <CartesianGrid vertical={false} />
             <XAxis
@@ -1003,7 +1005,9 @@ export function CustomLineChart() {
         <CardDescription>January - June 2023</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={lineConfig}>
+        <ChartContainer config={lineConfig}
+        className = "max-h-[25vh] overflow-y-auto w-full" //allow scrolling, max height
+        >
           <LineChart
             accessibilityLayer
             data={lineData}
@@ -1127,7 +1131,7 @@ export default function Dashboard(){
           <h2 className="text-lg font-bold mb-2">Most Recent Transactions</h2>
           <ul className="flex flex-col gap-2">
             {transactions
-            .slice(-10)
+            .slice(-5)
             .reverse()
             .map((transaction) => (
               <li key={transaction.id} className="flex justify-between">
@@ -1165,11 +1169,11 @@ export default function Dashboard(){
             Withdraw
           </button>
         </div>
+        <CustomPieChart />
       </div>
 
       {/* Right Side Charts */}
       <div className="flex-1 flex flex-col gap-4">
-        <CustomPieChart />
         <CustomBarChart />
         <CustomLineChart />
       </div>
