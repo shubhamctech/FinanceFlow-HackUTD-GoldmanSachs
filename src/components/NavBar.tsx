@@ -71,13 +71,13 @@ export default function NavBar() {
             </Link>
             </li>
             <li>
-            <Link href="/about" className="text-gray-700 hover:text-blue-600">
-                About Us
+            <Link href="/articles" className="text-gray-700 hover:text-blue-600">
+                Articles
             </Link>
             </li>
             <li>
-            <Link href="/contact" className="text-gray-700 hover:text-blue-600">
-                Contact
+            <Link href="/chat" className="text-gray-700 hover:text-blue-600">
+                AI Assistant
             </Link>
             </li>
         </ul>
