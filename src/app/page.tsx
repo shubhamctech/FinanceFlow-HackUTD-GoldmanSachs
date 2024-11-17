@@ -4,6 +4,7 @@ import Image from "next/image";
 import { DataManager } from "../components/DataManager";
 
 export default function Home() {
+	// `session` will match the returned value of `callbacks.session()` from `NextAuth()`
 	return (
 		<div className="flex flex-col items-center">
 			<main>

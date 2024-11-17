@@ -2,6 +2,9 @@ import { ReactNode } from "react";
 import Link from "next/link";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
+import SessionWrapper from "@/components/SessionWrapper";
+import { Session } from "inspector/promises";
+
 
 interface RootLayoutProps {
 	children: ReactNode;
@@ -22,7 +25,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </div>
 
 				<main className="flex-grow container mx-auto px-4 py-8">
-					{children}
+					<SessionWrapper>
+						{children}
+					</SessionWrapper>
 				</main>
 
 				<footer className="bg-gray-100 text-center py-4 mt-8">
