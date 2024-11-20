@@ -18,7 +18,7 @@ export default function Home() {
 					Your trusted partner for banking, payments, and investments
 				</p>
 				<Link
-					href="/auth"
+					href="/auth/login"
 					className="bg-blue-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300"
 				>
 					Get Started
@@ -79,7 +79,13 @@ function FeatureCard({
 	return (
 		<div className="bg-white p-6 rounded-lg shadow-md text-center">
 			<div className="w-16 h-16 mx-auto mb-4">
-				<Image src={icon} alt={title} width={64} height={64} className="rounded-xl"/>
+				<Image
+					src={icon}
+					alt={title}
+					width={64}
+					height={64}
+					className="rounded-xl"
+				/>
 			</div>
 			<h3 className="text-xl font-semibold mb-2">{title}</h3>
 			<p className="text-gray-600">{description}</p>
