@@ -53,27 +53,6 @@ FinanceFlow revolutionizes financial management for users with limited access to
 - NPM
 - Deno 2
 
-## 🏆 Achievements
-
-- Developed in under 24 hours for HackUTD 2024
-- Competed in Goldman Sachs & Pinata.cloud challenge tracks
-- Successfully implemented secure data storage using Pinata.cloud
-- Developed an AI-powered financial assistant for personalized user guidance
-
-## 👥 Team
-
-### Author
-
-**Shubham Chandravanshi**
-
-I helped the team brainstorm ideas, created the project structure, landing page, banking page and integrated the Pinata.cloud IPFS data storage to the project. If you have any questions or suggestions regarding the project, or would just like to connect, feel free to reach out to me at:
-  - My LinkedIn: [linkedin.com/in/shubhamcweb](https://linkedin.com/in/shubhamcweb)
-  - My GitHub: [github.com/shubhamcweb](https://github.com/shubhamcweb)
-
-### Co-Collaborators
-- **Naksh Jajoo**
-- **John "Isaac" Burns**
-
 ## 🚀 Getting Started
 
 1. Clone the repository
@@ -98,9 +77,28 @@ PINATA_JWT=your_jwt_here
 npm run dev
 ```
 
-## 📄 License
+## 👥 Team
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+### Author
+
+**Shubham Chandravanshi**
+
+I helped the team brainstorm ideas, created the project structure, landing page, banking page and integrated the Pinata.cloud IPFS data storage to the project. If you have any questions or suggestions regarding the project, or would just like to connect, feel free to reach out to me at:
+  - My LinkedIn: [linkedin.com/in/shubhamcweb](https://linkedin.com/in/shubhamcweb)
+  - My GitHub: [github.com/shubhamcweb](https://github.com/shubhamcweb)
+
+### Co-Collaborators
+- **Naksh Jajoo**
+- **John "Isaac" Burns**
+
+
+## 🏆 Achievements
+
+- Developed the project in under 24 hours for HackUTD 2024
+- Competed in Goldman Sachs & Pinata.cloud challenge tracks
+- Successfully implemented dashboard analytics & secure data storage using Pinata.cloud
+- Developed an AI-powered financial assistant for personalized user guidance
+
 
 ## 🙏 Acknowledgments
 
@@ -108,3 +106,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Goldman Sachs for providing an inspiring challenge
 - Pinata.cloud for their innovative storage solutions
 - All team members for their dedication and hard work
+
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
