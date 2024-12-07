@@ -29,6 +29,7 @@ FinanceFlow is an innovative fintech application developed at HackUTD 2024, addr
 ![AI Assistant Page](/public/screenshots/aiAssistant.png)
 *AI-powered financial assistant providing personalized guidance*
 
+<br>
 
 ## 🌟 Overview
 
